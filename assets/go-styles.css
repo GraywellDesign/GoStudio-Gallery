@@ -487,7 +487,8 @@ li {
 
 /* reviews shortcode */
 
-.container-review {
+
+/* .container-review {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -523,4 +524,4 @@ li {
 
 .list-review-li:nth-child(3) {
     grid-column-start: 2;
-}
+} */
