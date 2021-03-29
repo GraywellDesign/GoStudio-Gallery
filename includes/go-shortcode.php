@@ -21,7 +21,7 @@ function go_galery_shortcode() {?>
  
     <!-- post Grid galerry -->
     <div class="container-slider"> 
-         <div id="prev-slide-arrow" class="prev-slide-arrow">&larr;</div>
+         <div id="prev-slide-arrow-gallery" class="prev-slide-arrow-gallery">&larr;</div>
             <div id="container-post">       
                 <div id="container-gallery" class="container-gallery"> 
                     <?php $args = array('post_type' => 'gogalery', 'posts_per_page' => 7);
@@ -38,7 +38,7 @@ function go_galery_shortcode() {?>
                     <?php endif;?>
                 </div>
             </div>
-        <div id="next-slide-arrow" class="next-slide-arrow">&rarr;</div>
+        <div id="next-slide-arrow-gallery" class="next-slide-arrow-gallery">&rarr;</div>
     </div>
 
     <div id="modal-project" class="modal-project">

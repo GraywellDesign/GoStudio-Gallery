@@ -19,6 +19,7 @@
 require_once plugin_dir_path(__FILE__) . 'includes/go-postype.php'; 
 require_once plugin_dir_path(__FILE__) . 'includes/go-roles.php'; 
 require_once plugin_dir_path(__FILE__) . 'includes/go-shortcode.php'; 
+require_once plugin_dir_path(__FILE__) . 'includes/go-rev-shortcode.php'; 
 require_once plugin_dir_path(__FILE__) . 'includes/go-script.php';
 require_once plugin_dir_path(__FILE__) . 'includes/go-res-ajx.php'; 
 require_once plugin_dir_path(__FILE__) . 'includes/go-res-md-ajx.php';  
