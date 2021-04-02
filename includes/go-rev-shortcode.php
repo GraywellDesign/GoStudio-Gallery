@@ -8,23 +8,27 @@ function go_review_shortcode() {?>
 <section id="container" class="container">
    <!-- Review slider -->
    <div id="container-review" class="container-review">
-        <ul id="list-review-ul" class="list-review-ul">
+        <div id="list-review-ul" class="list-review-ul">
            <?php $args = array('post_type'=>'post', 'posts_per_page'=> -1 );
                  $post_query_review = new WP_Query($args);
                  if($post_query_review->have_posts()):
                         while($post_query_review->have_posts()):$post_query_review->the_post();?>
-                            <li data-id="<?php the_id();?>" id="list-review-li" class="list-review-li">
-                               <div id="img-review" class="img-review">
+                            <div id="list-review-<?php the_id();?>" class="list-review">
+                               <div class="img-review">
                                    <?php the_post_thumbnail()?>
                                </div>  
-                               <div id="content-review" class="content-review">
+                               <div class="content-review">
                                  <?php the_content();?>
                                </div> 
-                            </li>
+                            </div>
                         <?php endwhile; 
                     wp_reset_postdata();
                  endif; ?>
-        </ul>
+        </div>
+        <div id="slider-review-arrows" class="slider-review-arrows">
+            <div id="prev-slide-arrow-rev" class="prev-slide-arrow-rev">&larr;</div>
+            <div id="next-slide-arrow-rev" class="next-slide-arrow-rev">&rarr;</div>
+        </div>
     </div>
 </section>
 <?php }

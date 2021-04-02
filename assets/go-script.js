@@ -1,42 +1,110 @@
 (function($) {
 
-    /* Slider Reviews */
-    $('#list-review-ul').slick({
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        arrows: true,
-        prevArrow: '<div id="prev-slide-arrow-rev" class="prev-slide-arrow-rev">&larr;</div>',
-        nextArrow: '<div id="next-slide-arrow-rev" class="next-slide-arrow-rev">&rarr;</div>',
-        responsive: [{
-                breakpoint: 1000,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
 
-                }
-            },
-            {
-                breakpoint: 650,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1
-                }
-            }
-        ]
+    /* ==================>Review Slider<================== */
+    /* ==================>Vanilla JS<================== */
+
+    /* variables */
+    const revItem = document.querySelectorAll('.list-review');
+    const principalContainer = document.querySelector('#list-review-ul');
+
+    let count = 0;
+    let newDivContain;
+
+    /* Creating elements and classList */
+    newDivContain = document.createElement('div');
+    newDivContain.classList.add('list-review-container')
+
+
+    /* Insert items in a div container */
+    revItem.forEach(element => {
+        newDivContain.appendChild(element);
+        count++;
+        if (count == 3) {
+            principalContainer.appendChild(newDivContain);
+            count = 0;
+            newDivContain = document.createElement('div');
+            newDivContain.classList.add('list-review-container');
+        }
     });
-    var childReview = $('.slick-track > .slick-active');
-    $('.slick-track > .slick-active').removeClass('thisItem');
-    childReview.eq(2).addClass('thisItem')
-        /*  */
-    $('#next-slide-arrow-rev').on('click', function() {
-        console.log('si es igjual a 3');
-        var childReview = $('.slick-track > .slick-active');
-        $('.slick-track > .slick-active').removeClass('thisItem');
-        childReview.eq(2).addClass('thisItem')
-    })
 
-    /* Variables category, gallery slider */
+    /*  building the slider */
+    const prevArrrow = document.querySelector('#prev-slide-arrow-rev');
+    const nextArrow = document.querySelector('#next-slide-arrow-rev');
+    const containList = document.querySelectorAll('.list-review-container');
+
+
+    let firstChildItem = principalContainer.firstElementChild;
+    let totalItemsRev = containList.length;
+    let slidePosition = 0;
+
+    firstChildItem.classList.remove('list-review-container')
+    firstChildItem.classList.add('show-item')
+
+    principalContainer.style.width = 100 * totalItemsRev + '%';
+
+
+
+
+    /* event listeners for arrows  */
+    listeners();
+
+    function listeners() {
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+        })
+        prevArrrow.addEventListener('click', function() {
+            prevSlide()
+        });
+        nextArrow.addEventListener('click', function() {
+            nextSlide()
+        });
+
+    }
+
+    function prevSlide() {
+        if (slidePosition === 0) {
+            slidePosition = totalItemsRev - 1;
+        } else {
+            slidePosition--;
+            console.log(`mostrar`,
+                slidePosition)
+        }
+        updateSliderPos2(slidePosition)
+        console.log(slidePosition)
+    }
+
+    function nextSlide() {
+        if (slidePosition === totalItemsRev - 1) {
+            slidePosition = 0;
+        } else {
+            slidePosition++
+        }
+        console.log(slidePosition)
+        updateSliderPos(slidePosition)
+    }
+
+    function updateSliderPos(slidePosition) {
+        for (let slide of containList) {
+            slide.classList.remove('show-item');
+            slide.classList.add('list-review-container');
+        }
+        console.log(` dentro del update ${slidePosition}`)
+        containList[slidePosition].classList.add('show-item')
+    }
+
+    function updateSliderPos2(slidePosition) {
+        for (let slide of containList) {
+            slide.classList.remove('show-item');
+            slide.classList.add('list-review-container');
+        }
+        console.log(` dentro del update ${slidePosition}`)
+        containList[slidePosition].classList.add('show-item')
+    }
+    /* ==================>Gallery Slider<================== */
+    /* ==================>jQuery<================== */
+
     var categoriesLength = $('ul > #list-categories-li').length;
     var slideGallery = -1;
 
@@ -128,12 +196,6 @@
         var select2 = select.parent();
         select2.addClass('hidden-modal')
         console.log(select2)
-
-
     })
-
-    /* Review ajax slider generator */
-
-    /* Review slider arrow next */
 
 })(jQuery);
